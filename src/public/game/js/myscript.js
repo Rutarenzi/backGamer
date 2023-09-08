@@ -2,7 +2,7 @@ const hasQueryParameters = window.location.search !== '';
 const myDataInLocalStorage = localStorage.getItem('myData') === null;
 
 if(window.location.search === '' && !localStorage.getItem('token')) {
-   window.location.href = 'http://localhost:5173';
+   window.location.href = 'https://front-csn.vercel.app';
    sessionStorage.removeItem('redirected')
  }
 
@@ -20,7 +20,7 @@ sessionStorage.setItem('redirected', 'true');
 window.location.href = newUrlWithoutData
 
 }  
-var socket=io("http://localhost:3500", {
+var socket=io("https://backgamer.onrender.com", {
 extraHeaders: {
 token:`${localStorage.getItem('token')}`
 },

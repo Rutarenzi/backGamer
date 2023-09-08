@@ -15,7 +15,6 @@ route.post('/register',
 registerValidate,
 userExist,
 // referalCheck, 
-
 UserController.register
 );
 

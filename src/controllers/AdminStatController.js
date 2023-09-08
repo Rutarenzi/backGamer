@@ -21,6 +21,7 @@ class AdminStatController{
  }
  static getUser =async (req,res) => {
   try{
+    console.log(req.params.id)
      const response = await AdminStatService.getUser(req.params.id);
      return res.status(200).json({status:200, response});
   }catch(error){

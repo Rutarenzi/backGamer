@@ -308,7 +308,7 @@ function CGame(oData){
                             'Content-Type': 'application/json',
                         });
                 
-                      const response = await fetch("http://localhost:3500/api/v1/comss",
+                      const response = await fetch("https://backgamer.onrender.com/api/v1/comss",
                       {  
                         'method':'GET',
                         headers: {
@@ -335,7 +335,7 @@ function CGame(oData){
                        playSound("wheel_sound",1,false);
                        
                       }else if(response.status=== 401){
-                          window.location.href = 'http://localhost:5173';
+                          window.location.href = 'https://front-csn.vercel.app';
                           sessionStorage.removeItem('redirected');
                           localStorage.removeItem('token')
                           

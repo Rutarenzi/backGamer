@@ -16,7 +16,7 @@ class UserController {
         try{
 
             const response = await UserService.login(req.user);
-           console.log(new Date(Date.now() + 604800000))
+           
            return res.status(200).cookie("token", response.user.token, {
             expires: new Date(Date.now() + 604800000),
             secure: false,

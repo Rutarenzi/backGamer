@@ -4,11 +4,11 @@ const myPopup = new Popup({
    content: `
    <nav class="navbar">
         <ul>
-             <li><a class="linker" href="http://localhost:5173/dashboard">Home</a></li>
-             <li><a class="linker" href="http://localhost:5173/Level">Level</a></li>
-             <li><a class="linker" href="http://localhost:5173/Agent">Agent</a></li>
-             <li><a class="linker" href="http://localhost:5173/Team">Team</a></li>
-             <li><a class="linker" href="http://localhost:5173/Account">Account</a></li>
+             <li><a class="linker" href="https://front-csn.vercel.app/dashboard">Home</a></li>
+             <li><a class="linker" href="https://front-csn.vercel.app/Level">Level</a></li>
+             <li><a class="linker" href="https://front-csn.vercel.app/Agent">Agent</a></li>
+             <li><a class="linker" href="https://front-csn.vercel.app/Team">Team</a></li>
+             <li><a class="linker" href="https://front-csn.vercel.app/Account">Account</a></li>
           </ul>
    </nav>
           `,
