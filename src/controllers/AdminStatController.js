@@ -21,12 +21,19 @@ class AdminStatController{
  }
  static getUser =async (req,res) => {
   try{
-    console.log(req.params.id)
      const response = await AdminStatService.getUser(req.params.id);
      return res.status(200).json({status:200, response});
   }catch(error){
     return res.status(500).status({ status: 500, error:error.message})
   }
+ }
+ static getAllUser= async(req,res)=>{
+    try{
+       const response = await AdminStatService.getAllUser();
+       return res.status(200).json({status:200, response});
+    }catch(error){
+      return res.status(500).status({status: 500, error:error.message})
+    }
  }
  static addBonus = async(req, res) => {
   try{ 

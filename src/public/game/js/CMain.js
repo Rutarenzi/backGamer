@@ -36,6 +36,8 @@ function CMain(oData){
         _oPreloader = new CPreloader();
     };
 
+    //first thing
+
     this.soundLoaded = function(){
         _iCurResource++;
 

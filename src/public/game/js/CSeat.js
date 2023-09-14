@@ -59,7 +59,8 @@ function CSeat(){
         iAmount = parseFloat(iAmount.toFixed(2));
         _iCurBet+= iAmount;
         _iCurBet = parseFloat(_iCurBet.toFixed(2));
-        _iCredit -= iAmount;
+        // _iCredit -= iAmount;
+         _iCredit -= 0;
         _iCredit = roundDecimal(_iCredit, 1);
     };
     
@@ -117,7 +118,8 @@ function CSeat(){
         var iAmount = (iFicheValue * iNumFiches);
         iAmount = parseFloat(iAmount.toFixed(2));
         _iCurBet+= iAmount;
-        _iCredit -= iAmount;
+        // _iCredit -= iAmount;
+        _iCredit -= 0;
         _iCredit = roundDecimal(_iCredit, 1);
         
         _aLastBetWinHistory.push({win:aTmpWin,mc:aFichesMc});
@@ -141,7 +143,8 @@ function CSeat(){
         }
         
         var iBet = _oFicheController.clearLastBet();
-        _iCredit += iBet;
+        // _iCredit += iBet;
+        _iCredit += 0;
         _iCredit = roundDecimal(_iCredit, 1);
         _iCurBet -= iBet;
 
@@ -164,14 +167,16 @@ function CSeat(){
     this.clearAllBets = function(){
         this.resetNumberWins();
         _oFicheController.clearAllBets();
-        _iCredit += _iCurBet;
+        // _iCredit += _iCurBet;
+        _iCredit += 0;
         _iCredit = roundDecimal(_iCredit, 1);
         _iCurBet=0;
 
     };
     
     this.showWin = function(iWin){
-        _iCredit += iWin;
+        // _iCredit += iWin;
+        _iCredit += 0;
         _iCredit = roundDecimal(_iCredit, 1);
 
     };
@@ -185,7 +190,10 @@ function CSeat(){
     };
     
     this.getCredit = function(){
-        return _iCredit;
+    
+      _iCredit=JSON.parse(localStorage.getItem('moneyy')).amount;
+
+        return _iCredit
     };
     
     this.getNumbersBetted = function(){

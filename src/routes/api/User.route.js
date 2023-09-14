@@ -8,6 +8,7 @@ import verifyToken from "../../middlewares/verifyToken";
 import registerValidate from "../../validation/registerValid";
 import loginValidate from "../../validation/loginValid";
 import userFound from "../../middlewares/userExist"
+import isDisable from "../../middlewares/isDisable";
 const route = Router();
 
 route.post('/register',
@@ -21,6 +22,7 @@ route.post('/login',
 
 loginValidate,
 findUser,
+isDisable,
 checkPswd,
 
 UserController.login

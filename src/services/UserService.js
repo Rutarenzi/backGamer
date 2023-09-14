@@ -23,6 +23,7 @@ class UserService {
            phone,
            whatsapp,
            referrer,
+           disable: "false",
            role:"normal",
            profilePic: "https://res.cloudinary.com/dmjxukx09/image/upload/v1675844692/profiles/Profile-Avatar-PNG-Free-Download_paqfrf.png",
            referal_code : Referal,

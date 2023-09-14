@@ -45,6 +45,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      disable: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       referal_code: {
         type: Sequelize.STRING,
         allowNull: false,

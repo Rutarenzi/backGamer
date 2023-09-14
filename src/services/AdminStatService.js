@@ -102,6 +102,10 @@ class AdminStatService{
         ]});
      return user
    }
+   static getAllUser=async()=>{
+    const userAll = await User.findAll();
+    console.log(userAll)
+   }
    static addBonus = async(req)=> {
     const { bonus } = req.body
     const { id} = req.params;

@@ -1,5 +1,5 @@
 const { Account,Level,genealogy,User } = require("../database/models");
-
+import { io } from "../utils/socketio";
 
 class ComService{
    static calculate = async(req)=>{
@@ -53,7 +53,7 @@ class ComService{
       ]
       }]
     });
-    
+    io.emit("accountDetails", acc);
     return acc;
    }
 }

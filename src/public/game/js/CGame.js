@@ -261,7 +261,6 @@ function CGame(oData){
         _iCasinoCash = parseFloat(_iCasinoCash.toFixed(2));
 
         $(s_oMain).trigger("save_score",_oMySeat.getCredit());
-
         _oInterface.refreshMoney(_oMySeat.getCredit()-iWin, iWin);
     };
     
@@ -281,6 +280,7 @@ function CGame(oData){
     };
     
     this.onSpin = function(){
+       
         if(_oNeighborsPanel.isVisible()){
                 _oNeighborsPanel.onExit();
         }
@@ -299,23 +299,61 @@ function CGame(oData){
         if(_oInterface.isBlockVisible()){
                 return;
         }
+        if(localStorage.getItem('token') && localStorage.getItem('moneyy')){
+            if(JSON.parse(localStorage.getItem('moneyy')).worknumber > 0){
+                const spinner = async()=>{
+                    try{
+                        const headers = new Headers({
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add your token here
+                            'Content-Type': 'application/json',
+                        });
+                
+                      const response = await fetch("http://localhost:3500/api/v1/comss",
+                      {  
+                        'method':'GET',
+                        headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add your token here
+                        'Content-Type': 'application/json'
+                    }
+                    }
+                               
+                      );
+                      if(response.status == 200){
+                        _oInterface.showBlock();
 
-        _oInterface.showBlock();
-
-        _oNeighborsPanel.hide();
-        _oFinalBet.hide();
-        _oInterface.enableSpin(false);
+                       _oNeighborsPanel.hide();
+                       _oFinalBet.hide();
+                       _oInterface.enableSpin(false);
         
+                       this._startRouletteAnim();
+                       this._startBallSpinAnim();
+		
+		               $(s_oMain).trigger("bet_placed",_oMySeat.getCurBet());
+		
+                       this._setState(STATE_GAME_SPINNING);
+		
+                       playSound("wheel_sound",1,false);
+                       
+                      }else if(response.status=== 401){
+                          window.location.href = 'http://localhost:5173';
+                          sessionStorage.removeItem('redirected');
+                          localStorage.removeItem('token')
+                          
+                      } else if(response.status === 403){
+                        _oMsgBox.show("You have run out of the Game");
+                        _oInterface.enableBetFiches();
+                        _oInterface.enableSpin(true);
+                        return;
+                      }
+                    }catch(err){
+                      console.log(err)
+                    }
+                }
+                spinner()
+            }
+         }
+          
         
-        
-        this._startRouletteAnim();
-        this._startBallSpinAnim();
-		
-		$(s_oMain).trigger("bet_placed",_oMySeat.getCurBet());
-		
-        this._setState(STATE_GAME_SPINNING);
-		
-        playSound("wheel_sound",1,false);
         
     };
     

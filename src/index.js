@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 
 try {
   http.listen(port,() => {
-    console.log(`server connected on port ${port}`.green.bold);
+    console.log(`server connected on socket port ${port}`.green.bold);
   });
   IoConnect(http)
 } catch(error){

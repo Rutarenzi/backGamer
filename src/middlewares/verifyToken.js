@@ -10,7 +10,7 @@ if(!req.header("Authorization")){
   return res.status(401).json({ status: 401, message: "Please login"})
 }
 const token = req.header("Authorization").split(" ")[1]
- // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImphY3ExMiIsImZ1bGxuYW1lIjoibWFuaXJhZ3VoYSBKYWNxdWVzIiwicGhvbmUiOiIrMjUwNzg4MjQxNTAxIiwid2hhdHNhcHAiOiIrMjUwNzg4MjQxNTAxMSIsInJlZmVyYWxfY29kZSI6ImdmZW81NDgiLCJyZWZlcnJlciI6ImZncjEyMyIsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2ODg2NjQ5OTB9.D9e_aQnPnhO2UWXWm71FG-kg3irveW4jHat-PR9DhWw"
+  //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImphY3ExMiIsImZ1bGxuYW1lIjoibWFuaXJhZ3VoYSBKYWNxdWVzIiwicGhvbmUiOiIrMjUwNzg4MjQxNTAxIiwid2hhdHNhcHAiOiIrMjUwNzg4MjQxNTAxMSIsInJlZmVyYWxfY29kZSI6ImdmZW81NDgiLCJyZWZlcnJlciI6ImZncjEyMyIsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2ODg2NjQ5OTB9.D9e_aQnPnhO2UWXWm71FG-kg3irveW4jHat-PR9DhWw"
     if(!token){
       return res.status(401).json({ status: 401, message: "Please login"})
     }
@@ -20,7 +20,7 @@ const token = req.header("Authorization").split(" ")[1]
    
     const redisToken = await redisClient.get(username); 
     
-    if(redisToken === token){
+    if(redisToken){
     const userFound = await User.findOne({
          where: { username: details.data.username}});
      if(!userFound){

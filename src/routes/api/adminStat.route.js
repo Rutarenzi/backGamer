@@ -28,6 +28,11 @@ route.get(
     userAvail,
     AdminStatController.getUser
 );
+route.get("/allUsers",
+   verifyToken,
+   isAdmin,
+   AdminStatController.getAllUser
+)
 route.patch(
     "/user/:id",
     userUpdateValidate,
@@ -62,8 +67,8 @@ route.patch(
 );
 route.get(
     "/whoCash",
-    // verifyToken,
-    // isAdmin,
+    verifyToken,
+    isAdmin,
     AdminStatController.getWhoCash
 );
 route.get(

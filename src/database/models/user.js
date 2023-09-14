@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     referrer: DataTypes.STRING,
     referal_code: DataTypes.STRING,
     role: {type:DataTypes.STRING, defaultValue: "normal"},
+    disable: {type:DataTypes.STRING, defaultValue: "false"},
     profilePic: {
       type:DataTypes.STRING,
       defaultValue:  "https://res.cloudinary.com/dmjxukx09/image/upload/v1675844692/profiles/Profile-Avatar-PNG-Free-Download_paqfrf.png",

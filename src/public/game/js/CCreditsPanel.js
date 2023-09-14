@@ -19,7 +19,7 @@ function CCreditsPanel(){
         
         var oBgMenu = createBitmap(s_oSpriteLibrary.getSprite('bg_menu'));
         _oContainer.addChild(oBgMenu);
-        
+       
         _oFade = new createjs.Shape();
         _oFade.graphics.beginFill("rgba(0,0,0,0.7)").drawRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         _oContainer.addChild(_oFade);
@@ -57,7 +57,7 @@ function CCreditsPanel(){
         oLogo.y = CANVAS_HEIGHT/2;
         _oContainer.addChild(oLogo);
         
-        _oLink = new createjs.Text(TEXT_LINK,"24px Arial", "#ffffff");
+        _oLink = new createjs.Text(TEXT_LINK,"24px Arial", "#00e701");
         _oLink.x = CANVAS_WIDTH/2;
         _oLink.y = 440;
         _oLink.textAlign = "center";

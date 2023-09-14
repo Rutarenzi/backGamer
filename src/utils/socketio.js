@@ -1,6 +1,6 @@
 import socketio from "socket.io";
 import Jwtutils from "./JwtUtils";
-const { Account,User } = require("../database/models/account");
+const { Account,User } = require("../database/models");
 
 const userDetail= {};
 
@@ -38,6 +38,7 @@ const IoConnect = (http) => {
     }
   ]}});
   io.use((socket,next )=> {
+    
      if(socket.handshake.headers.token !== "null"){
           userExist(socket.handshake.headers.token, next)               
      } else {
