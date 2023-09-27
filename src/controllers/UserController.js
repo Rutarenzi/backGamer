@@ -55,6 +55,16 @@ class UserController {
             return res.status(500).json({ status: 500, error:error.message})
         }
     }
+    
+    static userDisable=async(req,res)=>{
+        try{
+          const response = await UserService.userDisable(req);
+          return res.status(200).json({status: 200, message: response})
+        }catch(error){
+            return res.status(500).json({status: 500, error:error.message})
+        }
+    }
+
     static adminDeleteUser = async(req,res) => {
         try{
            const response = await  UserService.adminDeleteUser(req.params.id);

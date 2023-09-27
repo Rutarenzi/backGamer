@@ -104,11 +104,10 @@ class UserService {
     static userUpdate = async(req)=>{
       const { id} = req.user;
       const { token } = req.body;
-      console.log(id)
-      console.log(req.body)
       await User.update({token}, {where: {id}});
       return "Token Submitted!!"
     }
+  
     static adminUpdateUser = async(req) => {
       const { id } = req.params;
       const {
@@ -132,6 +131,15 @@ class UserService {
     );
     return "updated Successfully"
     }
+    static userDisable= async(req)=>{
+      const { id} = req.params;
+      const { status }= req.body;
+      await User.update({
+        disable:status
+      },{where: {id}});
+     console.log(status)
+      return "Account Updated"
+   }
     static adminDeleteUser = async(id)=>{
        await User.destroy({ where: { id } });
       return "Deleted Successfully"

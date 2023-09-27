@@ -7,6 +7,7 @@ import levelExist from "../../middlewares/levelExist";
 import UserController from "../../controllers/UserController";
 import bonusValidate from "../../validation/bonusValid";
 import userUpdateValidate from "../../validation/userUpdateValid";
+import disableValidate from "../../validation/disableValid";
 const route = Router();
 
 route.get(
@@ -42,12 +43,27 @@ route.patch(
     UserController.adminUpdateUser
     
 );
+route.patch(
+    "/disable/:id",
+    disableValidate,
+    verifyToken,
+    isAdmin,
+    userAvail,
+    UserController.userDisable
+)
 route.delete(
     "/user/:id",
     verifyToken,
     isAdmin,
     userAvail,
     UserController.adminDeleteUser
+)
+route.get(
+    "/StatOne/:id",
+    verifyToken,
+    isAdmin,
+    userAvail,
+    AdminStatController.getOneStat
 )
 route.patch(
     "/user/bonus/:id",

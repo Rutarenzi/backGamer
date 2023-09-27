@@ -35,6 +35,14 @@ class AdminStatController{
       return res.status(500).status({status: 500, error:error.message})
     }
  }
+ static getOneStat =async(req,res)=>{
+    try{
+      const response = await AdminStatService.getOneStat(req);
+      return res.status(200).json({status: 200, response})
+    }catch(error){
+      return res.status(500).status({status: 500, error: error.message})
+    }
+ }
  static addBonus = async(req, res) => {
   try{ 
      const response = await AdminStatService.addBonus(req);

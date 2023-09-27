@@ -37,6 +37,7 @@ route.patch(
     verifyToken,
      userFound,
      UserController.userUpdate
-    )
+    );
+
 
 export default route;

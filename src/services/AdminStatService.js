@@ -64,6 +64,56 @@ class AdminStatService{
     
     return StatObj
    }
+   static getOneStat=async(req)=>{
+    let StatObj2 ={}
+    const {id} = req.params
+    const UserSta = await User.findOne({where:{id}});
+     if(UserSta){
+        StatObj2.status = UserSta.disable
+     }else{
+        StatObj2.users ="false"
+     }
+   
+     const depositer = await Deposit.findAll({where: {
+        payment_status:"confirmed",
+        user_id: UserSta.id
+    }})
+     if(depositer.length !=0){
+        const AllDeposit = depositer.map((item)=>{
+             return item.amount_received
+        }).reduce((sum,next)=>{
+            sum+next
+        });
+        StatObj2.AllDeposit=AllDeposit
+     }else{
+        StatObj2.AllDeposit= 0;
+     }
+
+     const paidOneOut = await withdraw.findAll({
+        where: {
+            user_id: UserSta.id
+        }
+     });
+     if(paidOneOut.length != 0){
+        const AllWithdraw =paidOneOut.map((item)=>{
+            return item.withdraw
+        }).reduce((sum,next)=>{
+            sum+next
+        });
+        StatObj2.AllWithdraw = AllWithdraw
+     }else{
+        StatObj2.AllWithdraw = 0
+     }
+     const people = await User.findAll({
+        where:{refeer: referal_code }
+     })
+     if(people.length !=0){
+        StatObj2.people = people
+     }else{
+        StatObj2.people =0
+     }
+     return StatObj2
+   }
    static newUser=async()=>{
     const hours24 = new Date();
     hours24.setHours(hours24.getHours()-24);
@@ -103,8 +153,36 @@ class AdminStatService{
      return user
    }
    static getAllUser=async()=>{
-    const userAll = await User.findAll();
-    console.log(userAll)
+    const userAll = await User.findAll({
+        attributes: [
+            "id",
+            "username",
+            "fullname",
+            "phone",
+            "whatsapp",
+            "referrer",
+            "referal_code",
+            "role",
+            "createdAt"
+        ],
+        include:[{
+            model:Account,
+            as: "account",
+            attributes: [
+                "commission",
+                "amount",
+                "level_id",
+                "withdraw",
+             
+            ],
+        
+        }],
+        order: [
+            ["createdAt", "DESC"] // Sort by createdAt in descending order
+          ]
+    });
+
+    return userAll;
    }
    static addBonus = async(req)=> {
     const { bonus } = req.body
