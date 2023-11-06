@@ -340,7 +340,7 @@ function CGame(oData){
                           localStorage.removeItem('token')
                           
                       } else if(response.status === 403){
-                        _oMsgBox.show("You have run out of the Game");
+                        _oMsgBox.show("Recharge Up to your Level");
                         _oInterface.enableBetFiches();
                         _oInterface.enableSpin(true);
                         return;

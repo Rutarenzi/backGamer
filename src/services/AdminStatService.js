@@ -68,16 +68,18 @@ class AdminStatService{
     let StatObj2 ={}
     const {id} = req.params
     const UserSta = await User.findOne({where:{id}});
+    
      if(UserSta){
         StatObj2.status = UserSta.disable
      }else{
-        StatObj2.users ="false"
+        StatObj2.Status ="false"
      }
-   
+     
      const depositer = await Deposit.findAll({where: {
         payment_status:"confirmed",
         user_id: UserSta.id
     }})
+    
      if(depositer.length !=0){
         const AllDeposit = depositer.map((item)=>{
              return item.amount_received
@@ -88,7 +90,7 @@ class AdminStatService{
      }else{
         StatObj2.AllDeposit= 0;
      }
-
+    
      const paidOneOut = await withdraw.findAll({
         where: {
             user_id: UserSta.id
@@ -104,11 +106,12 @@ class AdminStatService{
      }else{
         StatObj2.AllWithdraw = 0
      }
+     
      const people = await User.findAll({
-        where:{refeer: referal_code }
+        where:{referrer: UserSta.referal_code }
      })
      if(people.length !=0){
-        StatObj2.people = people
+        StatObj2.people = people.length
      }else{
         StatObj2.people =0
      }

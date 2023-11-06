@@ -1,5 +1,6 @@
 const { Deposit, Account,Level } = require("../database/models"); 
 import axios from "axios";
+import { io } from "../utils/socketio";
 class PaymentService {
     static getCurrency =  async (req, res) => {
         const { P_CURRENCY, X_API_KEY } = process.env; 
@@ -90,7 +91,7 @@ class PaymentService {
                 purchase_id
 
             } = result;
-        
+           
            const deposit=  await Deposit.create({
                 user_id:id,
                 payment_id,
@@ -121,10 +122,14 @@ class PaymentService {
                order_id,
                purchase_id
              } = req.body;
+            
              const payment = await Deposit.findOne({ where: { payment_id}});
+             console.log(payment.user_id)
               if(payment){
+            
+                io.emit(`paid-${payment.user_id}`,payment_status)
                 await Deposit.update({payment_status},{where: {payment_id}})
-                const account = await  Account.findOne({ where: { user_id:payment.id}});
+                const account = await  Account.findOne({ where: { user_id:payment.user_id}});
                 const newAmount = account.amount + pay_amount;
                 const levels = await Level.findAll();
                 const levelers = levels.map((item) =>{

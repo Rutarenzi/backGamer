@@ -14,7 +14,8 @@ const route = Router();
 route.post('/register',
 registerValidate,
 userExist,
-referalCheck, 
+// referalCheck, 
+
 UserController.register
 );
 
@@ -24,7 +25,6 @@ loginValidate,
 findUser,
 isDisable,
 checkPswd,
-
 UserController.login
 
 );
@@ -34,7 +34,7 @@ UserController.logout
 );
 route.patch(
     "/update",
-    verifyToken,
+     verifyToken,
      userFound,
      UserController.userUpdate
     );

@@ -17,7 +17,7 @@ function CMsgBox(){
         
         _oMsgText = new CTLText(_oGroup, 
                     CANVAS_WIDTH/2 -250, 230, 500, 280, 
-                    40, "center", "#fff", FONT1, 1,
+                    40, "center", "#00b801", FONT1, 1,
                     2, 2,
                     "",
                     true, true, true,
