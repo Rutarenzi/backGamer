@@ -24,7 +24,6 @@ loginValidate,
 findUser,
 isDisable,
 checkPswd,
-
 UserController.login
 
 );
@@ -34,7 +33,7 @@ UserController.logout
 );
 route.patch(
     "/update",
-    verifyToken,
+     verifyToken,
      userFound,
      UserController.userUpdate
     );

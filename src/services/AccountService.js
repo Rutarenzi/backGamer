@@ -36,7 +36,6 @@ class AccountService {
     const levelers = levels.map((item) =>{
       return item.minimum;
     });
-    console.log(level)
       if(level == null){
         console.log("fuck level")
           for(let x = 0; x < levelers.length;x++){
