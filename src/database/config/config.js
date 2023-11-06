@@ -13,15 +13,15 @@ const {
   TEST_DATABASE_PASSWORD
 
 } = process.env;
-// const dialectToggle = () =>
-//   TEST_GIT_ACTIONS === "true"
-//     ? {
-//         ssl: {
-//           require: true,
-//           rejectUnauthorized: false,
-//         },
-//       }
-//     : {};
+const dialectToggle = () =>
+  TEST_GIT_ACTIONS === "true"
+    ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      }
+    : {};
 
 module.exports = {
   development: {
@@ -29,10 +29,16 @@ module.exports = {
     database: DEV_DATABASE,
     password: DATABASE_PASSWORD,
     host: DATABASE_HOST,
-    port: DATABASE_PORT,    
+    port: DATABASE_PORT,
+    ssl:true,    
     dialect: "postgres",
     logging: false,
     protocol: "postgres",
+    dialectOptions: {
+      ssl:{
+        require: true
+      }
+    }
     
 
   },
