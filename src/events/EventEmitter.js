@@ -18,6 +18,15 @@ class AccountEmitter extends EventEmitter{
       
     })
     };
+
+    setDrawer=async()=>{
+      schedule.scheduleJob(process.env.DRAWER_SCHEDULE,
+          async()=>{
+            this.emit('drawer',{})
+          }   
+        )
+    }
+
     setCommission= async()=> {
         schedule.scheduleJob(process.env.ACCOUNT_SCHEDULE,
             async () => {
