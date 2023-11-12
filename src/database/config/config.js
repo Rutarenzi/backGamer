@@ -34,12 +34,12 @@ module.exports = {
     dialect: "postgres",
     logging: false,
     protocol: "postgres",
-    // dialectOptions: {
-    //   ssl: {
-    //     require: true,
-    //     rejectUnauthorized: false,
-    //   },
-    // },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
   
   },
   test: {

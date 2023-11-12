@@ -29,7 +29,8 @@ class PaymentService {
         try{
            const { P_ESTIMATE, X_API_KEY } = process.env;
            const { price } = req.body;
-           const url = P_ESTIMATE + `amount=${price}&currency_from=usdt&currency_to=usd`;
+           
+           const url = P_ESTIMATE + `amount=${price}&currency_from=usdttrc20&currency_to=usd`;
            const options = {
             method: "GET",
             headers: {
@@ -38,6 +39,7 @@ class PaymentService {
         }
           
            const response = await axios(url,options);
+           
            const { estimated_amount }= await response.data;
            
            return res.status(200).json({status: 200, estimated_amount});
@@ -75,9 +77,9 @@ class PaymentService {
            
           const response = await axios(P_PAY,options);
           const result = await response.data;
-          console.log(result)
+          
     
-          if(result.status !== false){
+          if(result?.status !== false){
             const { id } = req.user;
             const { 
                 payment_id,
@@ -136,6 +138,7 @@ class PaymentService {
                   return item.minimum;
                 });
                 if(payment_status == "finished"){
+                    
                     if(account.level_id == null){
                         for(let x = 0; x < levelers.length;x++){
                          if(x == levelers.length -1){

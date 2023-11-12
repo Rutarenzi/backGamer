@@ -9,7 +9,7 @@ class DrawerService{
             truncate: true, // Truncate the table (remove all data and reset auto-incrementing IDs)
             cascade: true,
         });
-        for(let i=0; i<=6;i++){
+        for(let i=1; i<=6;i++){
            let obj={};
            obj.name=referalUtils();
            obj.amount=Math.floor(Math.random() * (9999999 - 100 + 1)) + 100;
